@@ -1,10 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/GenHRL42',
-  assetPrefix: '/GenHRL42/',
+  basePath: '/genhrl-website',
+  assetPrefix: '/genhrl-website/',
   images: {
-    unoptimized: true, // Disable Next.js Image Optimization for static export
+    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
   },
   // If you plan to use next/image for optimization, you might need a custom loader for GitHub Pages.
   // For simplicity, we'll assume standard img tags or manually handling image paths for now.
