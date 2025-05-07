@@ -115,7 +115,7 @@ export default function HomePage() {
       <Head>
         <title>{hierarchyData.paperTitle || 'GenHRL Project'}</title>
         <meta name="description" content={hierarchyData.paperAbstract || 'Interactive HRL project page'} />
-        <link rel="icon" href={getAssetPath('/favicon.ico')} />
+        <link rel="icon" href='/favicon.ico' />
       </Head>
 
       <header className={styles.header}>
@@ -131,10 +131,12 @@ export default function HomePage() {
         <h2>Our Method: GenHRL</h2>
         <div className={styles.methodLayout}>
           <div className={styles.methodImageContainer}>
-            <img 
+            <Image 
               src={getAssetPath(methodImagePath)}
               alt="GenHRL Method Diagram" 
-              style={{ width: '100%', height: 'auto', objectFit: 'contain' }} 
+              fill 
+              style={{ objectFit: 'contain' }} 
+              priority 
             />
             <p className={styles.caption}>Fig. 1: Overview of the GenHRL framework. (Placeholder caption)</p>
           </div>
