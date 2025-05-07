@@ -6,9 +6,14 @@ import SkillNode from './SkillNode';
 
 const SkillTree: React.FC = () => {
   const [openContentPath, setOpenContentPath] = useState<string | null>(hierarchy.name); 
-  const [expandedChildrenPaths, setExpandedChildrenPaths] = useState<Set<string>>(
-    new Set([hierarchy.name]) // Expand top-level children by default
-  );
+  const [expandedChildrenPaths, setExpandedChildrenPaths] = useState<Set<string>>(() => {
+    const jumpOntoBlockSkillName = hierarchy.children?.find(child => child.name === "JumpOntoBlock")?.name;
+    const initialPaths = new Set([hierarchy.name]);
+    if (jumpOntoBlockSkillName) {
+      initialPaths.add(`${hierarchy.name}/${jumpOntoBlockSkillName}`);
+    }
+    return initialPaths;
+  });
 
   const handleToggleContent = (path: string) => {
     setOpenContentPath(prevPath => (prevPath === path ? null : path)); 
@@ -28,7 +33,7 @@ const SkillTree: React.FC = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">{hierarchy.name} Details</h1>
+      <h1 className="text-2xl font-bold mb-4">Interactive Skill Hierarchy</h1>
       <SkillNode
           skill={hierarchy} // The root skill
           skillPath={hierarchy.name} // The path for the root skill

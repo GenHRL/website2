@@ -26,3 +26,34 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Previous tabFlashEffect can be removed or commented out if no longer needed */
+/* @keyframes tabFlashEffect { ... } */
+/* .tab-flash-animation { ... } */
+
+/* New Sunset Orange Sequential Tab Flash Animation */
+@keyframes sequentialSunsetFlashEffect {
+  0%, 100% {
+    background-color: inherit; /* Tab's normal background */
+    /* opacity: 0.7; */ /* Optional: slightly dim non-flashing state */
+  }
+  25% {
+    background-color: #FBBF24; /* Tailwind amber-400 */
+    /* opacity: 1; */
+  }
+  50% {
+    background-color: #F97316; /* Tailwind orange-500 - peak flash */
+    /* opacity: 1; */
+  }
+  75% {
+    background-color: #FBBF24; /* Tailwind amber-400 */
+    /* opacity: 1; */
+  }
+}
+
+.sunset-flash-tab {
+  animation-name: sequentialSunsetFlashEffect;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in-out;
+  /* animation-fill-mode: forwards; */ /* if you want it to stay at the last frame, but inherit should work */
+}
