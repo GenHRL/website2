@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+  basePath: '/genhrl-website',
+  assetPrefix: '/genhrl-website/', // Note the trailing slash
   images: {
     unoptimized: true, // Or false if deploying to Vercel/similar
     remotePatterns: [
@@ -15,9 +18,9 @@ const nextConfig = {
   //   loader: 'custom',
   //   loaderFile: './image-loader.js', // You would need to create this file
   // },
+  trailingSlash: true,
   // Trailing slash can be important for how paths are resolved in static exports.
   // It ensures that /path becomes /path/index.html
-  // trailingSlash: true,
   // Add other Next.js configurations here as needed
 };
 
