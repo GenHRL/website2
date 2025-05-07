@@ -25,13 +25,6 @@ jobs:
         env:
           NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
 
-
-      - name: Export static site
-        run: npm run export # Or yarn export
-        env:
-          NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
-
-
       - name: Add .nojekyll file
         run: touch ./out/.nojekyll
 
