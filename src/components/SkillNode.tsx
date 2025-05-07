@@ -52,15 +52,17 @@ const SkillNode: React.FC<SkillNodeProps> = ({
   };
   const nodeColor = levelColors[skill.level] || 'bg-blue-200 hover:bg-blue-300 text-gray-700'; // Fallback with explicit text color
 
-  const handleHeaderClick = () => {
-    // Clicking the header always toggles the content visibility for this node
-    onToggleContent(skillPath);
-    // If it has children, it also toggles their expansion
-    if (hasChildren) {
-      onToggleChildren(skillPath);
+  // Combined handler for clicking the main skill box
+  const handleSkillBoxClick = () => {
+    onToggleContent(skillPath); // Toggle content visibility
+  };
+
+  // Handler for keyboard interaction on the main skill box
+  const handleSkillBoxKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault(); // Prevent default spacebar scroll or form submission
+      handleSkillBoxClick();
     }
-    // Reset to video tab when collapsing/re-opening content? Optional.
-    // if (!isContentOpen) setActiveTab('video'); 
   };
 
   // Helper for tab button styling
@@ -80,16 +82,27 @@ const SkillNode: React.FC<SkillNodeProps> = ({
   return (
     <div className="ml-4 my-2">
       <div
-        className={`p-2 rounded cursor-pointer ${nodeColor} border border-gray-400`}
-        onClick={handleHeaderClick}
+        className={`p-2 rounded ${nodeColor} border border-gray-400 flex items-center cursor-pointer`}
+        onClick={handleSkillBoxClick}
+        onKeyDown={handleSkillBoxKeyDown}
+        role="button"
+        tabIndex={0}
       >
-        <div className="flex justify-between items-center">
-          <span>
-            {hasChildren && (isChildrenExpanded ? '▼' : '►')}{' '}
-            {skill.name} (Level {skill.level})
+        {hasChildren && (
+          <span
+            className="mr-2 p-1 rounded"
+          >
+            {isChildrenExpanded ? '▼' : '►'}
           </span>
-          {/* Details button removed */}
-        </div>
+        )}
+        <span className="flex-grow">
+          {skill.name} (Level {skill.level})
+        </span>
+        {!isContentOpen && (
+          <span className="ml-auto text-xs italic opacity-75 px-2">
+            Click for details
+          </span>
+        )}
       </div>
 
       {/* Content Area */}
@@ -165,7 +178,7 @@ const SkillNode: React.FC<SkillNodeProps> = ({
             return (
               // Recursively render child nodes, passing down the state and handlers
               <SkillNode 
-                key={child.name} 
+                key={childPath}
                 skill={child} 
                 skillPath={childPath}
                 openContentPath={openContentPath} // Pass down the single open content path

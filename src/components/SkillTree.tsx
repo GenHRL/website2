@@ -1,19 +1,28 @@
 'use client';
 
 import { useState } from 'react';
-import { hierarchy } from '@/lib/hierarchyData';
+import { hierarchy, Skill } from '@/lib/hierarchyData';
 import SkillNode from './SkillNode';
+
+// Helper function to get all paths of nodes that have children
+const getAllExpandablePaths = (skill: Skill, currentPath: string, paths: Set<string>) => {
+  if (skill.children && skill.children.length > 0) {
+    paths.add(currentPath);
+    skill.children.forEach(child => {
+      getAllExpandablePaths(child, `${currentPath}/${child.name}`, paths);
+    });
+  }
+};
 
 const SkillTree: React.FC = () => {
   const [openContentPath, setOpenContentPath] = useState<string | null>(hierarchy.name); 
-  const [expandedChildrenPaths, setExpandedChildrenPaths] = useState<Set<string>>(() => {
-    const jumpOntoBlockSkillName = hierarchy.children?.find(child => child.name === "JumpOntoBlock")?.name;
-    const initialPaths = new Set([hierarchy.name]);
-    if (jumpOntoBlockSkillName) {
-      initialPaths.add(`${hierarchy.name}/${jumpOntoBlockSkillName}`);
-    }
-    return initialPaths;
-  });
+  
+  // Initialize expanded paths to show all levels by default
+  const initialExpandedPaths = new Set<string>();
+  getAllExpandablePaths(hierarchy, hierarchy.name, initialExpandedPaths);
+  const [expandedChildrenPaths, setExpandedChildrenPaths] = useState<Set<string>>(
+    initialExpandedPaths
+  );
 
   const handleToggleContent = (path: string) => {
     setOpenContentPath(prevPath => (prevPath === path ? null : path)); 
@@ -35,8 +44,8 @@ const SkillTree: React.FC = () => {
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Interactive Skill Hierarchy</h1>
       <SkillNode
-          skill={hierarchy} // The root skill
-          skillPath={hierarchy.name} // The path for the root skill
+          skill={hierarchy} 
+          skillPath={hierarchy.name} 
           openContentPath={openContentPath}
           expandedChildrenPaths={expandedChildrenPaths}
           onToggleContent={handleToggleContent}
