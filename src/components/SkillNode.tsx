@@ -163,10 +163,13 @@ const SkillNode: React.FC<SkillNodeProps> = ({
             )}
 
             {activeTab === 'success' && (
-              <div>
+              <div className="text-xs">
                 {/* <h5 className="font-medium mb-1">Success Termination Code:</h5> */}
                 <pre className="bg-gray-100 p-2 rounded text-xs overflow-auto h-60 border border-gray-200">
-                  {skill.successTerminationCode || '// Placeholder for success termination code'}
+                    <code className="language-python">
+                        <PrismHighlighter/>
+                        {skill.successTerminationCode || '// Placeholder for success termination code'}
+                  </code>
                 </pre>
               </div>
             )}
