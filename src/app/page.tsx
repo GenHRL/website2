@@ -67,7 +67,7 @@ export default function HomePage() {
           </p>
           <div className="bg-gray-100 border border-gray-300 p-3 rounded-md my-3 shadow-sm">
             <em className="text-gray-700 leading-relaxed">
-              "The robot should jump over a low wall, push a large sphere into a high wall to knock it down and pass over it. The robot should then walk to a small sphere and kick it past a block. Finally the robot should walk to the block and jump onto it."
+              &quot;The robot should jump over a low wall, push a large sphere into a high wall to knock it down and pass over it. The robot should then walk to a small sphere and kick it past a block. Finally the robot should walk to the block and jump onto it.&quot;
             </em>
           </div>
           <p className="text-gray-700 leading-relaxed mb-2">
