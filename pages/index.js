@@ -131,12 +131,10 @@ export default function HomePage() {
         <h2>Our Method: GenHRL</h2>
         <div className={styles.methodLayout}>
           <div className={styles.methodImageContainer}>
-            <Image 
+            <img 
               src={getAssetPath(methodImagePath)}
               alt="GenHRL Method Diagram" 
-              fill 
-              style={{ objectFit: 'contain' }} 
-              priority 
+              style={{ width: '100%', height: 'auto', objectFit: 'contain' }} 
             />
             <p className={styles.caption}>Fig. 1: Overview of the GenHRL framework. (Placeholder caption)</p>
           </div>
