@@ -1,4 +1,5 @@
 import SkillTree from '@/components/SkillTree';
+import Image from 'next/image';
 
 export default function HomePage() {
   const openReviewUrl = "https://openreview.net/forum?id=vPwAh0eL0D&referrer=%5BAuthor%20Console%5D(%2Fgroup%3Fid%3Drobot-learning.org%2FCoRL%2F2025%2FConference%2FAuthors%23your-submissions)"; // Replace # with your actual OpenReview URL
@@ -29,9 +30,11 @@ export default function HomePage() {
         <div className="my-8 max-w-4xl mx-auto">
           <h2 className="text-2xl font-semibold mb-4 text-center">Method Overview</h2>
           <div className="w-full">
-            <img 
+            <Image 
               src="/method_drawing.svg"  // Updated to new SVG file
               alt="Method Diagram"
+              width={800} // Placeholder width, adjust as needed
+              height={600} // Placeholder height, adjust as needed
               className="h-auto w-full max-w-2xl mx-auto block" // Styling
             />
           </div>

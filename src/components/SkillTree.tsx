@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Skill, hierarchy } from '@/lib/hierarchyData';
+import { hierarchy } from '@/lib/hierarchyData';
 import SkillNode from './SkillNode';
 
 const SkillTree: React.FC = () => {
