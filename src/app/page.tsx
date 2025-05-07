@@ -1,6 +1,9 @@
 import SkillTree from '@/components/SkillTree';
 import Image from 'next/image';
 
+// This will be replaced at build time by the actual value of NEXT_PUBLIC_BASE_PATH
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ""; 
+
 export default function HomePage() {
   const openReviewUrl = "https://openreview.net/forum?id=vPwAh0eL0D&referrer=%5BAuthor%20Console%5D(%2Fgroup%3Fid%3Drobot-learning.org%2FCoRL%2F2025%2FConference%2FAuthors%23your-submissions)"; // Replace # with your actual OpenReview URL
 
@@ -31,7 +34,7 @@ export default function HomePage() {
           <h2 className="text-2xl font-semibold mb-4 text-center">Method Overview</h2>
           <div className="w-full">
             <Image 
-              src="/method_drawing.svg"  // Updated to new SVG file
+              src={`${basePath}/method_drawing.svg`}  // Construct the path with basePath
               alt="Method Diagram"
               width={800} // Placeholder width, adjust as needed
               height={600} // Placeholder height, adjust as needed
