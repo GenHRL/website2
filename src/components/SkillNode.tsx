@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Skill } from '@/lib/hierarchyData';
+import PrismHighlighter from "./PrismHighlighter";
 
 // This will be replaced at build time by the actual value of NEXT_PUBLIC_BASE_PATH
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ""; 
@@ -150,10 +151,13 @@ const SkillNode: React.FC<SkillNodeProps> = ({
             )}
 
             {activeTab === 'reward' && (
-              <div>
+              <div className="text-xs">
                 {/* <h5 className="font-medium mb-1">Reward Code:</h5> */}
                 <pre className="bg-gray-100 p-2 rounded text-xs overflow-auto h-60 border border-gray-200">
-                  {skill.rewardCode || '// Placeholder for reward code'}
+                    <code className="language-python">
+                        <PrismHighlighter/>
+                        {skill.rewardCode || '// Placeholder for reward code'}
+                    </code>
                 </pre>
               </div>
             )}
