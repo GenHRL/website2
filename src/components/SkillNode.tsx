@@ -3,6 +3,9 @@
 import { useState } from 'react';
 import { Skill } from '@/lib/hierarchyData';
 
+// This will be replaced at build time by the actual value of NEXT_PUBLIC_BASE_PATH
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ""; 
+
 interface SkillNodeProps {
   skill: Skill;
   skillPath: string; // e.g., "Obstacle Course" or "Obstacle Course/JumpOverLowWall"
@@ -95,8 +98,7 @@ const SkillNode: React.FC<SkillNodeProps> = ({
                 {/* <h5 className="font-medium mb-1">Policy Video Demonstration:</h5> Removed title, implied by tab */}
                 {skill.policyVideo ? (
                   <video controls width="100%" key={skillPath} className="max-w-full">
-                    {/* Added key to potentially help reset video state on node change */}
-                    <source src={skill.policyVideo} type="video/mp4" />
+                    <source src={`${basePath}${skill.policyVideo}`} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                 ) : (
