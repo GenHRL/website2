@@ -88,6 +88,83 @@ export default function HomePage() {
         </div>
       </header>
       <SkillTree />
+
+      {/* Results Section */}
+      <section className="my-12 text-left">
+        <h2 className="text-3xl font-bold mb-8 text-center">Results</h2>
+
+        {/* L1 Results Graph */}
+        <div className="mb-10">
+          <h3 className="text-2xl font-semibold mb-3 text-center">Level 2 Skill Training Using Only Level 1 Skills</h3>
+          <div className="w-full flex justify-center">
+            <Image 
+              src={`${basePath}/L1_results.svg`}
+              alt="Results of training Level 2 skills using Level 1 sub-skills"
+              width={800}
+              height={500}
+              className="h-auto w-full max-w-5xl mx-auto block border border-gray-300 rounded shadow-md"
+            />
+          </div>
+          <p className="mt-2 text-sm text-gray-600 leading-relaxed text-center">
+            Figure 1: Success rates of Level 2 skills when policies are learned over their constituent Level 1 skills. This demonstrates the effectiveness of the first layer of hierarchy in acquiring complex behaviors.
+          </p>
+        </div>
+
+        {/* Obstacle Course Task Success Graph */}
+        <div className="mb-10">
+          <h3 className="text-2xl font-semibold mb-3 text-center">Task Training Using Only Level 2 Skills</h3>
+          <div className="w-full flex justify-center">
+            <Image 
+              src={`${basePath}/Obstacle_Course_Task_Success_combined.svg`}
+              alt="Task success rates for the full Obstacle Course using Level 2 skills"
+              width={800}
+              height={500}
+              className="h-auto w-full max-w-5xl mx-auto block border border-gray-300 rounded shadow-md"
+            />
+          </div>
+          <p className="mt-2 text-sm text-gray-600 leading-relaxed text-center">
+            Figure 2: Comparison of task-level policy learning using the composed Level 2 skills versus attempting to learn the entire task with a flat PPO agent. Direct PPO struggles to learn meaningful behaviors, whereas breaking the task into a hierarchy allows for successful learning.
+          </p>
+        </div>
+
+        {/* Zero-shot Results Table */}
+        <div className="mb-10">
+          <h3 className="text-2xl font-semibold mb-3 text-center">Zero-Shot Composition of Level 2 Skills</h3>
+          <p className="text-gray-700 leading-relaxed mb-4 text-center">
+            The following table shows the success rates when applying the pre-trained Level 2 skills sequentially on the full obstacle course, following an order determined by the LLM, without any task-level policy learning or reward function. This demonstrates the zero-shot compositional capabilities of the generated skills.
+          </p>
+          
+          <div className="overflow-x-auto shadow-md rounded-lg">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th colSpan={4} className="px-6 py-3 text-center text-lg font-semibold text-gray-700 tracking-wider border-b border-gray-300">
+                    Zero-shot completion rates
+                  </th>
+                </tr>
+                <tr>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Low Wall</th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Large Sphere</th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Small Sphere</th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Block</th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">94% (5.5)</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">62% (8.4)</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">40% (7.1)</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">30% (7.1)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-2 text-sm text-gray-600 leading-relaxed text-center">
+            Table 1: Success percentages of zero-shot composition of Level 2 skills in the obstacle environment. Percentages are the means of five seeds. Brackets show the standard deviations. The percentages include all previous tasks, such that the 30% task success of finishing on the block means that 30% of runs completed all obstacles.
+          </p>
+        </div>
+      </section>
+
       <footer className="mt-8 text-center text-gray-500">
         <p>Level 0 skills are Primitive Actions and are implicitly part of Level 1 skills.</p>
       </footer>

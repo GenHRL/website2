@@ -81,9 +81,9 @@ const SkillNode: React.FC<SkillNodeProps> = ({
   };
 
   return (
-    <div className="ml-4 my-2">
+    <div className="skill-node-wrapper">
       <div
-        className={`p-2 rounded ${nodeColor} border border-gray-400 flex items-center cursor-pointer`}
+        className={`relative tree-node-content p-1 rounded ${nodeColor} border border-gray-400 flex items-center cursor-pointer`}
         onClick={handleSkillBoxClick}
         onKeyDown={handleSkillBoxKeyDown}
         role="button"
@@ -179,7 +179,7 @@ const SkillNode: React.FC<SkillNodeProps> = ({
 
       {/* Children are rendered if isChildrenExpanded is true */}
       {hasChildren && isChildrenExpanded && (
-        <div className="ml-4 border-l-2 border-gray-300 pl-2">
+        <div className="relative tree-children-group pl-6 mt-1">
           {skill.children?.map((child) => {
             const childPath = `${skillPath}/${child.name}`;
             return (

@@ -57,3 +57,69 @@ body {
   animation-timing-function: ease-in-out;
   /* animation-fill-mode: forwards; */ /* if you want it to stay at the last frame, but inherit should work */
 }
+
+/* Add this to your global CSS file (e.g., src/app/globals.css) */
+
+.skill-node-wrapper {
+  /* Add a little space between sibling skill nodes if desired */
+  /* margin-bottom: 0.125rem; /* Example: 2px */
+}
+
+.tree-node-content {
+  position: relative; /* Crucial for the ::before pseudo-element (connector line) */
+  /* Tailwind classes like p-1, rounded, bg-color, border, flex, items-center handle the node's appearance */
+}
+
+.tree-children-group {
+  position: relative; /* Crucial for its ::before pseudo-element (main vertical stem) */
+  /* Tailwind 'pl-6' (1.5rem) creates indentation space for lines */
+  /* Tailwind 'mt-1' (0.25rem) creates a small space below the parent's skill box */
+}
+
+/* The main vertical stem line for a group of children */
+.tree-children-group::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0; /* Extend from the top to the bottom of the children group */
+  left: 0.75rem; /* Positioned at the center of the 'pl-6' (1.5rem) padding area. (1.5rem / 2 = 0.75rem) */
+  width: 1px;    /* A thin line */
+  background-color: #9ca3af; /* Tailwind's gray-400. Adjust as needed. */
+}
+
+/* The "L" shaped horizontal connector for each child node.
+   This targets a .tree-node-content that is inside a .skill-node-wrapper,
+   which itself is a direct child of a .tree-children-group. */
+.tree-children-group > .skill-node-wrapper > .tree-node-content::before {
+  content: "";
+  position: absolute;
+  top: 50%; /* Vertically center relative to the node content's height */
+  left: -0.75rem; /* Pulls the line leftwards into the padding area of the parent .tree-children-group.
+                     This should be the negative of the 'left' value of .tree-children-group::before,
+                     to make it connect from the vertical stem to the node. */
+  width: 0.75rem; /* Length of the horizontal part of the "L" connector. Should match the 'left' of the vertical stem. */
+  height: 1px;    /* A thin line, same as the vertical stem */
+  background-color: #9ca3af; /* Same color as the vertical stem */
+  transform: translateY(-50%); /* Fine-tunes vertical centering of the 1px line */
+}
+
+/* Optional: Styling for the last child in a group to make the "L" corner look neater (└─)
+   This would require adding an 'is-last-child' class to the last .skill-node-wrapper in a group.
+   Example (add this if you implement 'is-last-child' class):
+*/
+/*
+.tree-children-group > .skill-node-wrapper.is-last-child > .tree-node-content::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -0.75rem;
+  width: 0.75rem;
+  height: calc(50% + 1px); // Erase from mid-point downwards
+  background-color: #fff; // Use your page background color here to "erase" the main vertical stem
+  z-index: 0; // Ensure it's behind the horizontal line but above the vertical stem part it covers
+}
+.tree-children-group > .skill-node-wrapper.is-last-child > .tree-children-group::before {
+  // If a last child also has children, its own vertical stem might need height adjustment
+  // This gets complex quickly. Simpler to have the main stem continue.
+}
+*/
