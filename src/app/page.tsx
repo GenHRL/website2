@@ -142,7 +142,7 @@ export default function HomePage() {
             The following table shows the success rates when applying the pre-trained Level 2 skills sequentially on the full obstacle course, following an order determined by the LLM, without any task-level policy learning or reward function. This demonstrates the zero-shot compositional capabilities of the generated skills.
           </p>
           
-          <div className="overflow-x-auto shadow-md rounded-lg">
+          <div className="max-w-2xl mx-auto overflow-x-auto shadow-md rounded-lg">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-100">
                 <tr>
