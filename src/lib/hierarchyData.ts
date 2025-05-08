@@ -35,7 +35,7 @@ export const hierarchy: Skill = {
       successTerminationCode: "// Placeholder: PushLargeSphereToHighWall Success Termination Code",
       policyVideo: "/videos/L2_PushLargeSphereToHighWall.mp4",
       children: [
-        { name: "WalkToLargeSphere", level: 1, policyVideo: "" }, // No specific video found
+        { name: "WalkToLargeSphere", level: 1, policyVideo: "/videos/WalkToLargeSphere.mp4" }, // No specific video found
         { name: "PositionHandsForPushLargeSphere", level: 1, policyVideo: "/videos/PositionHandsForPushLargeSphere.mp4" },
         { name: "PushLargeSphereForward", level: 1, policyVideo: "/videos/PushLargeSphereForward.mp4" },
         { name: "EnsureHighWallFalls", level: 1, policyVideo: "/videos/EnsureHighWallFalls.mp4" },
