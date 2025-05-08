@@ -674,10 +674,10 @@ class SuccessTerminationCfg:
 `,
       policyVideo: "/videos/L2_JumpOverLowWall.mp4",
       children: [
-        { name: "WalkToLowWall", level: 1 },
-        { name: "PrepareForJumpOverLowWall", level: 1 },
-        { name: "ExecuteJumpOverLowWall", level: 1 },
-        { name: "LandStablyAfterLowWall", level: 1 },
+        { name: "WalkToLowWall", level: 1, policyVideo: "/videos/WalkToWall.mp4" },
+        { name: "PrepareForJumpOverLowWall", level: 1, policyVideo: "/videos/PrepareForJumpOverLowWall.mp4" },
+        { name: "ExecuteJumpOverLowWall", level: 1, policyVideo: "/videos/ExecuteJumpOverLowWall.mp4" },
+        { name: "LandStablyAfterLowWall", level: 1, policyVideo: "/videos/LandStablyAfterLowWall.mp4" },
       ],
     },
     {
