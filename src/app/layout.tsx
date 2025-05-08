@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import "prismjs/themes/prism.css";              // bundles Prism’s CSS
 import "./globals.css";
 
 const geistSans = Geist({
